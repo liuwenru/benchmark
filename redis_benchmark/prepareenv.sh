@@ -20,7 +20,7 @@
 set -o nounset                              # Treat unset variables as an error
 
 
-curl -O  https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+curl -O  http://fdoc.epoint.com.cn:3366/tmp/Python-3.6.1.tar.xz
 
 
 tar xvf Python-3.6.1.tar.xz  && cd Python-3.6.1
