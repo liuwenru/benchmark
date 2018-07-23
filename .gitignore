@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+*.log
+
+
+.idea/
+*.iml
+redis_benchmark/resout

@@ -27,7 +27,9 @@ redis_requests_num=9000000
 shutil.copyfile('msyh.ttf',os.path.dirname(matplotlib.matplotlib_fname())+"/fonts/ttf/msyh.ttf")
 matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 
-bench_size_list=[128,512,1024,5120,10240,20480,30720]
+
+
+bench_size_list=[128,512,1024,5120,10240,20480,30720,1024000]
 bench_clients_list=[1,8,16,32,64,128]
 
 
@@ -36,27 +38,31 @@ def bench_standalone():
     for i in bench_size_list:
         print("测试value_size:{0}bytes".format(i))
         for j in bench_clients_list:
-            benchmark_cmd="./redis-benchmark -h {redis_host} -p {redis_port}  -n 900000 -c {benchclients} -d {datasize} --csv > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
+            benchmark_cmd="./redis-benchmark -h {redis_host} -p {redis_port}  -n 100 -c {benchclients} -d {datasize} --csv > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_cmd)
-            subprocess.check_call(benchmark_cmd, shell=True)
+            subprocess.call(benchmark_cmd, shell=True)
             time.sleep(5) 
 
 
 
 
 
-def draw_picture():
+def draw_standalone_picture():
     print("对测试结果进行绘图........")
-    x_area=[1,2,3,4,5]
-    y1_area=[100,200,23,45,34]
-    y2_area=[200,100,123,435,324]
-    plot.xticks(x_area)
-    plot.yticks(y2_area)
-    plot.ylabel('中文的标题')
-    plot.xlabel('数据量大小')
+    print("从dbsize的角度进行对比，比较相同的client连接数下不同操作额QPM")
+    x_area=bench_size_list
+    x_ticks=(bench_size_list,['128b','512b','1k','5k','10k','20k','30k'])
+    plot.ylabel('QPM')
+    plot.xlabel('dbsize大小')
+    #plot.xticks(x_ticks)
+    for i in range(len(bench_clients_list)):
+        print("{0}-------{1}".format(i,bench_clients_list[i]))
+        plot.subplot(2, 3,i+1)
+        plot.plot(x_area, [1,5,6,34,45,45,78])
     plot.show()
-    exit()
-
+    
 
 if __name__ == "__main__":
-    bench_standalone()
+    draw_standalone_picture()
+
+
