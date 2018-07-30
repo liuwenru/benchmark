@@ -1,4 +1,4 @@
-package com.epoint;
+package com.epoint.Redis_benchmark.Standalone_benchmark;
 
 public class DataSizeUtil {
     //生产对应大小的数据
@@ -10,6 +10,7 @@ public class DataSizeUtil {
     public static String VALUESIZE_20k="";
     public static String VALUESIZE_30k="";
     public static String VALUESIZE_100k="";
+
     public DataSizeUtil() {
         String s="a";
         for (int i=1;i<=100*1024;i++){
@@ -32,5 +33,6 @@ public class DataSizeUtil {
                 VALUESIZE_100k=s;
             }
         }
+
     }
 }

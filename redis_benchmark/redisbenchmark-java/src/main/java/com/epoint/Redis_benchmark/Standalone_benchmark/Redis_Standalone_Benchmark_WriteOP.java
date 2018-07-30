@@ -29,9 +29,8 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.epoint.Standalone_benchmark;
+package com.epoint.Redis_benchmark.Standalone_benchmark;
 
-import com.epoint.DataSizeUtil;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -40,46 +39,91 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
 import java.util.UUID;
+
+//对Redis的String类操作做性能压力测试
+
+// 测试命令:GET/SET
+
+
 @State(Scope.Benchmark)
 @Warmup(iterations = 0)
-public class Redis_Standalone_Benchmark {
+public class Redis_Standalone_Benchmark_WriteOP {
     public static JedisPool pool=null;
     public static DataSizeUtil dataSizeUtil=null;
+    public static String VALUESIZE_BENCH="";
 
     @Setup
     public static void Bench_init(){
-        //初始化做一些对象的配置工作
-
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxTotal(100);
-        pool=new JedisPool(jedisPoolConfig,"192.168.188.76",6380);
-        dataSizeUtil=new DataSizeUtil();
+        try {
+            //初始化做一些对象的配置工作
+            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+            jedisPoolConfig.setMaxTotal(100);
+            pool=new JedisPool(jedisPoolConfig,"192.168.188.76",6380);
+            dataSizeUtil=new DataSizeUtil();
+            Jedis op=pool.getResource();
+            op.flushAll();//每次测试前先清空数据库
+            op.close();
+        }catch (Exception ex){
+        }finally {
+        }
     }
 
+
+    /**
+     * String 类操作
+     *
+     */
     @Benchmark
-    @Threads(4)
     public void test_SET() {
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
         String uuid=UUID.randomUUID().toString();
-        jedisop.set("epoint"+uuid,DataSizeUtil.VALUESIZE_100k);
-        jedisop.close();
-    }
-    @Benchmark
-    @Threads(4)
-    public void test_GET() {
-        //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        String uuid=UUID.randomUUID().toString();
-        jedisop.set("epoint"+uuid,DataSizeUtil.VALUESIZE_100k);
+        jedisop.set("epoint"+uuid,VALUESIZE_BENCH);
         jedisop.close();
     }
 
-    public static void main(String[] args) throws RunnerException {
-        Options options = new OptionsBuilder().include(Redis_Standalone_Benchmark.class.getSimpleName()).build();
-        new Runner(options).run();
+
+    /**
+     *  Hash 类操作
+     *
+     */
+    @Benchmark
+    public void test_HSET(){
+        //对Redis的进行测试
+        Jedis jedisop=pool.getResource();
+        String uuid=UUID.randomUUID().toString();
+        jedisop.hset("epoint_HSET",uuid,VALUESIZE_BENCH);
+        jedisop.close();
     }
+
+    /**
+     *  SET 结合类操作
+     */
+    @Benchmark
+    public  void test_SADD(){
+        //对Redis的进行测试
+        Jedis jedisop=pool.getResource();
+        String uuid=UUID.randomUUID().toString();
+        jedisop.sadd("epoint_SADD",uuid,VALUESIZE_BENCH);
+        jedisop.close();
+    }
+
+    /**
+     *  SortedSet 排序类集合
+     */
+    @Benchmark
+    public void test_ZADD(){
+        //对Redis的进行测试
+        Jedis jedisop=pool.getResource();
+        String uuid=UUID.randomUUID().toString();
+        jedisop.sadd("epoint_ZADD",uuid,VALUESIZE_BENCH);
+        jedisop.close();
+    }
+
+
+
+
+
 
 }
