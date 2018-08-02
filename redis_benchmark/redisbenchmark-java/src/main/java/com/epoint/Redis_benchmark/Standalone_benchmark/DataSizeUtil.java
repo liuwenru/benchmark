@@ -1,38 +1,35 @@
 package com.epoint.Redis_benchmark.Standalone_benchmark;
 
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import redis.clients.jedis.Jedis;
+import java.util.Random;
+
+
+
+@State(Scope.Benchmark)
 public class DataSizeUtil {
+    public static int RANDNUM=100000;
     //生产对应大小的数据
-    public static String VALUESIZE_128="";
-    public static String VALUESIZE_512="";
-    public static String VALUESIZE_1k="";
-    public static String VALUESIZE_5k="";
-    public static String VALUESIZE_10k="";
-    public static String VALUESIZE_20k="";
-    public static String VALUESIZE_30k="";
-    public static String VALUESIZE_100k="";
+    public static String BENCHSIZE="";
 
-    public DataSizeUtil() {
-        String s="a";
-        for (int i=1;i<=100*1024;i++){
-            s=s+"a";
-            if(i==128){
-                VALUESIZE_128=s;
-            }else if(i==512) {
-                VALUESIZE_512=s;
-            }else if(i==1024){
-                VALUESIZE_1k=s;
-            }else if(i==5120){
-                VALUESIZE_5k=s;
-            }else if(i==10240){
-                VALUESIZE_10k=s;
-            }else if(i==20480){
-                VALUESIZE_20k=s;
-            }else if(i==30720){
-                VALUESIZE_30k=s;
-            }else if(i==102400){
-                VALUESIZE_100k=s;
-            }
+    public DataSizeUtil(int size) {
+        StringBuilder stringBuilder = new StringBuilder("e");
+        for (int i=1;i<=size;i++){
+            stringBuilder.append("e");
         }
-
+        BENCHSIZE=stringBuilder.toString();
+    }
+    public static void PrepareData(String host,int port){
+        Jedis op=new Jedis(host,port);
+        Random random=new Random(RANDNUM);
+        op.flushAll();//每次测试前先清空数据库
+        for(int i=0;i<=RANDNUM;i++){
+            String rnd=Integer.toString(random.nextInt(RANDNUM));
+            op.set("epoint"+rnd,BENCHSIZE);
+            op.hset("epoint_HGET",rnd, BENCHSIZE);
+            op.sadd("epoint_SET",BENCHSIZE+rnd);
+        }
+        op.close();
     }
 }
