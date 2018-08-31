@@ -37,6 +37,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.UUID;
 
 // 对单节点的Redis进行写入测试
@@ -48,13 +49,19 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public static String HOST="";
     @Param("6379")
     public static int PORT=6379;
-
     @Param("1024")
     public static int DATASIZE=1024;
 
     public static JedisPool pool=null;
     public static DataSizeUtil dataSizeUtil=null;
     public static Long rndnumber=0L;
+    public static HashMap<String,String> hashMap10=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap20=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap40=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap80=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap100=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap200=new HashMap<String, String>();
+    public static HashMap<String,String> hashMap400=new HashMap<String, String>();
 
     @Setup
     public static void Bench_init(){
@@ -68,6 +75,31 @@ public class Redis_Standalone_Benchmark_WriteOP {
             Jedis op=pool.getResource();
             op.flushAll();//每次测试前先清空数据库
             op.close();
+            HashMap<String,String> tmpmap=new HashMap<String, String>();
+            for(int i =1;i<=400;i++){
+                tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+                if(i==10){
+                    hashMap10=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==20){
+                    hashMap20=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==40){
+                    hashMap40=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==80){
+                    hashMap80=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==100){
+                    hashMap100=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==200){
+                    hashMap200=(HashMap<String, String>) tmpmap.clone();
+                }
+                if (i==400){
+                    hashMap400=(HashMap<String, String>) tmpmap.clone();
+                }
+            }
         }catch (Exception ex){
         }finally {
         }
@@ -81,7 +113,6 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_SET() {
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        //String uuid=UUID.randomUUID().toString();
         jedisop.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
@@ -95,8 +126,50 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_HSET(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        String uuid=UUID.randomUUID().toString();
-        jedisop.hset("epoint_HSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET10(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap10);
+        jedisop.close();
+
+    }
+    @Benchmark
+    public void test_HMSET20(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap20);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET40(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap40);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET80(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap80);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET100(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap100);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET200(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap200);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_HMSET400(){
+        Jedis jedisop=pool.getResource();
+        jedisop.hmset("epoint_HASH",hashMap400);
         jedisop.close();
     }
 
@@ -107,7 +180,6 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public  void test_SADD(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        String uuid=UUID.randomUUID().toString();
         jedisop.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
@@ -120,8 +192,24 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_ZADD(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        String uuid=UUID.randomUUID().toString();
         jedisop.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.close();
+    }
+
+    /**
+     *  LIST 集合操作
+     */
+    @Benchmark
+    public void  test_LPUSH(){
+        Jedis jedisop=pool.getResource();
+        String uuid=UUID.randomUUID().toString();
+        jedisop.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
+        jedisop.close();
+    }
+    @Benchmark
+    public void test_RPUSH(){
+        Jedis jedisop=pool.getResource();
+        jedisop.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
 }
