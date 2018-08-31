@@ -1,4 +1,4 @@
-package com.epoint.Redis_benchmark.Standalone_benchmark;
+package com.epoint.Redis_benchmark.Cluster_benchmark;
 
 
 import com.epoint.Redis_benchmark.DataSizeUtil;
@@ -14,7 +14,7 @@ import java.util.Random;
  */
 @State(Scope.Benchmark)
 @Warmup(iterations = 0)
-public class Redis_Standalone_Benchmark_ReadOP {
+public class Redis_Cluster_Benchmark_ReadOP {
     @Param("127.0.0.1")
     public static String HOST="";
 

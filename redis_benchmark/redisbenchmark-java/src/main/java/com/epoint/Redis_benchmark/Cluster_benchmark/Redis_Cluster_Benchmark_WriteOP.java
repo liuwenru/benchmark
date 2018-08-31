@@ -29,22 +29,23 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.epoint.Redis_benchmark.Standalone_benchmark;
+package com.epoint.Redis_benchmark.Cluster_benchmark;
 
 import com.epoint.Redis_benchmark.DataSizeUtil;
 import org.openjdk.jmh.annotations.*;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.*;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-// 对单节点的Redis进行写入测试
+// Cluster集群的Redis进行写入测试
 
 @State(Scope.Benchmark)
 @Warmup(iterations = 0)
-public class Redis_Standalone_Benchmark_WriteOP {
+public class Redis_Cluster_Benchmark_WriteOP {
     @Param("127.0.0.1")
     public static String HOST="";
     @Param("6379")
@@ -52,7 +53,9 @@ public class Redis_Standalone_Benchmark_WriteOP {
     @Param("1024")
     public static int DATASIZE=1024;
 
-    public static JedisPool pool=null;
+
+    public static Set<HostAndPort> jedisClusterNodes=new HashSet<HostAndPort>();;
+
     public static DataSizeUtil dataSizeUtil=null;
     public static Long rndnumber=0L;
     public static HashMap<String,String> hashMap10=new HashMap<String, String>();
@@ -63,18 +66,15 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public static HashMap<String,String> hashMap200=new HashMap<String, String>();
     public static HashMap<String,String> hashMap400=new HashMap<String, String>();
 
-    @Setup
+    @Setup(Level.Trial)
     public static void Bench_init(){
         try {
-            System.out.println("#### 测试Redis单节点的写入操作性能...............................................测试机器地址"+HOST+"-----"+"测试端口"+PORT+"测试数据大小(byte):"+DATASIZE);
-            //初始化做一些对象的配置工作
-            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(100);
-            pool=new JedisPool(jedisPoolConfig,HOST,PORT);
+            System.out.println("#### 测试Redis集群的写入操作性能...............................................测试机器地址"+HOST+"-----"+"测试数据大小(byte):"+DATASIZE);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
-            Jedis op=pool.getResource();
-            op.flushAll();//每次测试前先清空数据库
-            op.close();
+            //初始化做一些对象的配置工作
+            jedisClusterNodes.add(new HostAndPort(HOST, PORT));
+            JedisCluster  jc = new JedisCluster(jedisClusterNodes);
+            jc.flushAll();
             HashMap<String,String> tmpmap=new HashMap<String, String>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
@@ -110,11 +110,12 @@ public class Redis_Standalone_Benchmark_WriteOP {
      *
      */
     @Benchmark
-    public void test_SET() {
+    public void test_SET() throws IOException {
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
         jedisop.close();
+
     }
 
 
@@ -123,52 +124,52 @@ public class Redis_Standalone_Benchmark_WriteOP {
      *
      */
     @Benchmark
-    public void test_HSET(){
+    public void test_HSET() throws IOException {
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET10(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET10() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap10);
         jedisop.close();
 
     }
     @Benchmark
-    public void test_HMSET20(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET20() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap20);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET40(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET40() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap40);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET80(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET80() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap80);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET100(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET100() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap100);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET200(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET200() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap200);
         jedisop.close();
     }
     @Benchmark
-    public void test_HMSET400(){
-        Jedis jedisop=pool.getResource();
+    public void test_HMSET400() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.hmset("epoint_HASH",hashMap400);
         jedisop.close();
     }
@@ -177,9 +178,9 @@ public class Redis_Standalone_Benchmark_WriteOP {
      *  SET 结合类操作
      */
     @Benchmark
-    public  void test_SADD(){
+    public  void test_SADD() throws IOException {
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
@@ -189,9 +190,9 @@ public class Redis_Standalone_Benchmark_WriteOP {
      *
      */
     @Benchmark
-    public void test_ZADD(){
+    public void test_ZADD() throws IOException {
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
@@ -200,15 +201,15 @@ public class Redis_Standalone_Benchmark_WriteOP {
      *  LIST 集合操作
      */
     @Benchmark
-    public void  test_LPUSH(){
-        Jedis jedisop=pool.getResource();
+    public void  test_LPUSH() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         String uuid=UUID.randomUUID().toString();
         jedisop.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
     @Benchmark
-    public void test_RPUSH(){
-        Jedis jedisop=pool.getResource();
+    public void test_RPUSH() throws IOException {
+        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
         jedisop.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
