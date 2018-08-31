@@ -35,6 +35,7 @@ import com.epoint.Redis_benchmark.DataSizeUtil;
 import org.openjdk.jmh.annotations.*;
 import redis.clients.jedis.*;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,7 +47,7 @@ import java.util.UUID;
 @State(Scope.Benchmark)
 @Warmup(iterations = 0)
 public class Redis_Cluster_Benchmark_WriteOP {
-    @Param("127.0.0.1")
+    @Param("192.168.188.77")
     public static String HOST="";
     @Param("6379")
     public static int PORT=6379;
@@ -55,6 +56,9 @@ public class Redis_Cluster_Benchmark_WriteOP {
 
 
     public static Set<HostAndPort> jedisClusterNodes=new HashSet<HostAndPort>();;
+    public static JedisCluster  jcstatic=null;
+
+
 
     public static DataSizeUtil dataSizeUtil=null;
     public static Long rndnumber=0L;
@@ -66,20 +70,19 @@ public class Redis_Cluster_Benchmark_WriteOP {
     public static HashMap<String,String> hashMap200=new HashMap<String, String>();
     public static HashMap<String,String> hashMap400=new HashMap<String, String>();
 
-    @Setup(Level.Trial)
+    @Setup
     public static void Bench_init(){
         try {
             System.out.println("#### 测试Redis集群的写入操作性能...............................................测试机器地址"+HOST+"-----"+"测试数据大小(byte):"+DATASIZE);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //初始化做一些对象的配置工作
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
-            JedisCluster  jc = new JedisCluster(jedisClusterNodes);
-            jc.flushAll();
-            HashMap<String,String> tmpmap=new HashMap<String, String>();
+            jcstatic= new JedisCluster(jedisClusterNodes);
+            HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
                 if(i==10){
-                    hashMap10=(HashMap<String, String>) tmpmap.clone();
+                    hashMap10= (HashMap<String, String>) tmpmap.clone();
                 }
                 if (i==20){
                     hashMap20=(HashMap<String, String>) tmpmap.clone();
