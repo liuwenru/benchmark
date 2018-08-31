@@ -38,7 +38,8 @@ def bench_standalone():
     for i in bench_size_list:
         print("测试value_size:{0}bytes".format(i))
         for j in bench_clients_list:
-            benchmark_cmd="./redis-benchmark -h {redis_host} -p {redis_port}  -n 100 -c {benchclients} -d {datasize} --csv > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
+            # benchmark_cmd="./redis-benchmark -h {redis_host} -p {redis_port}  -n 100 -c {benchclients} -d {datasize} --csv > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
+            benchmark_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_cmd)
             subprocess.call(benchmark_cmd, shell=True)
             time.sleep(5) 
@@ -63,6 +64,7 @@ def draw_standalone_picture():
     
 
 if __name__ == "__main__":
-    draw_standalone_picture()
+    #draw_standalone_picture()
+    bench_standalone()
 
 
