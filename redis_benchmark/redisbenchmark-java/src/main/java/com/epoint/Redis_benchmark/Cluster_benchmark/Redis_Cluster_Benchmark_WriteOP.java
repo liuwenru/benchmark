@@ -115,9 +115,11 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_SET() throws IOException {
         //对Redis的进行测试
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+
+        jcstatic.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
 
     }
 
@@ -129,52 +131,68 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_HSET() throws IOException {
         //对Redis的进行测试
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+        jcstatic.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
     }
     @Benchmark
     public void test_HMSET10() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap10);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap10);
+//        jedisop.close();
+
+        jcstatic.hmset("epoint_HASH",hashMap10);
+
 
     }
     @Benchmark
     public void test_HMSET20() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap20);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap20);
+//        jedisop.close();
+
+        jcstatic.hmset("epoint_HASH",hashMap20);
     }
     @Benchmark
     public void test_HMSET40() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap40);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap40);
+//        jedisop.close();
+        jcstatic.hmset("epoint_HASH",hashMap40);
     }
     @Benchmark
     public void test_HMSET80() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap80);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap80);
+//        jedisop.close();
+
+        jcstatic.hmset("epoint_HASH",hashMap80);
     }
     @Benchmark
     public void test_HMSET100() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap100);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap100);
+//        jedisop.close();
+        jcstatic.hmset("epoint_HASH",hashMap100);
     }
     @Benchmark
     public void test_HMSET200() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap200);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap200);
+//        jedisop.close();
+
+        jcstatic.hmset("epoint_HASH",hashMap200);
+
     }
     @Benchmark
     public void test_HMSET400() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.hmset("epoint_HASH",hashMap400);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.hmset("epoint_HASH",hashMap400);
+//        jedisop.close();
+
+        jcstatic.hmset("epoint_HASH",hashMap400);
+
     }
 
     /**
@@ -183,9 +201,12 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public  void test_SADD() throws IOException {
         //对Redis的进行测试
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+
+        jcstatic.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+
     }
 
     /**
@@ -195,9 +216,11 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_ZADD() throws IOException {
         //对Redis的进行测试
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+
+        jcstatic.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
     }
 
     /**
@@ -205,15 +228,22 @@ public class Redis_Cluster_Benchmark_WriteOP {
      */
     @Benchmark
     public void  test_LPUSH() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        String uuid=UUID.randomUUID().toString();
-        jedisop.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        String uuid=UUID.randomUUID().toString();
+//        jedisop.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+
+        jcstatic.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
+
+
     }
     @Benchmark
     public void test_RPUSH() throws IOException {
-        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
-        jedisop.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
-        jedisop.close();
+//        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
+//        jedisop.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
+//        jedisop.close();
+
+
+        jcstatic.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
     }
 }

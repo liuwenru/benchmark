@@ -3,11 +3,11 @@ package com.epoint.Redis_benchmark.Cluster_benchmark;
 
 import com.epoint.Redis_benchmark.DataSizeUtil;
 import org.openjdk.jmh.annotations.*;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.*;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  *  对单节点的Redis进行读取测试
@@ -15,7 +15,7 @@ import java.util.Random;
 @State(Scope.Benchmark)
 @Warmup(iterations = 0)
 public class Redis_Cluster_Benchmark_ReadOP {
-    @Param("127.0.0.1")
+    @Param("192.168.188.77")
     public static String HOST="";
 
     @Param("6379")
@@ -25,7 +25,10 @@ public class Redis_Cluster_Benchmark_ReadOP {
     public static int DATASIZE=1024;
 
     public static DataSizeUtil dataSizeUtil=null;
-    public static JedisPool pool=null;
+
+    public static Set<HostAndPort> jedisClusterNodes=new HashSet<HostAndPort>();;
+    public static JedisCluster jcstatic=null;
+
     public static Random random=new Random(100000);
 
     @Setup(Level.Trial)
@@ -33,20 +36,16 @@ public class Redis_Cluster_Benchmark_ReadOP {
         try {
             System.out.println("#### 测试Redis单节点的读取操作性能...............................................测试机器地址 "+HOST+" -----"+"测试端口 "+PORT+" 测试数据大小(byte): "+DATASIZE);
             //初始化做一些对象的配置工作
-            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(100);
-            pool=new JedisPool(jedisPoolConfig,HOST,PORT);
+            jedisClusterNodes.add(new HostAndPort(HOST, PORT));
+            jcstatic= new JedisCluster(jedisClusterNodes);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
-            Jedis op=pool.getResource();
-            op.flushAll();//每次测试前先清空数据库
             //构造压力测试数据
             for (int i=0;i<=100000;i++){
-                op.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);
-                op.hset("epoint_HASH",Integer.toString(i),DataSizeUtil.BENCHSIZE);
-                op.sadd("epoint_SET",DataSizeUtil.BENCHSIZE+Integer.toString(i));
+                jcstatic.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);
+                jcstatic.hset("epoint_HASH",Integer.toString(i),DataSizeUtil.BENCHSIZE);
+                jcstatic.sadd("epoint_SET",DataSizeUtil.BENCHSIZE+Integer.toString(i));
                 //op.zadd("epoint_ZSET",(j++),DataSizeUtil.BENCHSIZE+Integer.toString(i));
             }
-            op.close();
         }catch (Exception ex){
         }finally {
         }
@@ -60,9 +59,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
     @Benchmark
     public void test_GET() {
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.get("epoint"+random.nextInt(DataSizeUtil.RANDNUM));
-        jedisop.close();
+        jcstatic.get("epoint"+random.nextInt(DataSizeUtil.RANDNUM));
     }
     /**
      *  Hash 类操作
@@ -71,9 +68,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
     @Benchmark
     public void test_HGET(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.hget("epoint_HASH",Integer.toString(random.nextInt(100000)));
-        jedisop.close();
+        jcstatic.hget("epoint_HASH",Integer.toString(random.nextInt(100000)));
     }
     /**
      *  SET 集合类操作
@@ -94,50 +89,36 @@ public class Redis_Cluster_Benchmark_ReadOP {
     @Benchmark
     public void test_ZRANGEBYSCORE10(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",10);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",10);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE20(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",20);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",20);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE40(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",40);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",40);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE80(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",80);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",80);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE100(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",100);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",100);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE200(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",200);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",200);
     }
     @Benchmark
     public void test_ZRANGEBYSCORE400(){
         //对Redis的进行测试
-        Jedis jedisop=pool.getResource();
-        jedisop.srandmember("epoint_SET",400);
-        jedisop.close();
+        jcstatic.srandmember("epoint_SET",400);
     }
 }
