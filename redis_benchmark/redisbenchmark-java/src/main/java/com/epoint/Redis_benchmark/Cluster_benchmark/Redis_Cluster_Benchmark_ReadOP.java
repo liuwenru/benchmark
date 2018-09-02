@@ -37,7 +37,14 @@ public class Redis_Cluster_Benchmark_ReadOP {
             System.out.println("#### 测试Redis单节点的读取操作性能...............................................测试机器地址 "+HOST+" -----"+"测试端口 "+PORT+" 测试数据大小(byte): "+DATASIZE);
             //初始化做一些对象的配置工作
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
-            jcstatic= new JedisCluster(jedisClusterNodes);
+            // Jedis连接池配置
+            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+            jedisPoolConfig.setMaxIdle(100);
+            jedisPoolConfig.setMaxTotal(500);
+            jedisPoolConfig.setMinIdle(0);
+            jedisPoolConfig.setMaxWaitMillis(2000);
+            jedisPoolConfig.setTestOnBorrow(true);
+            jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //构造压力测试数据
             for (int i=0;i<=100000;i++){

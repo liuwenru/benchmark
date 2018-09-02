@@ -77,7 +77,14 @@ public class Redis_Cluster_Benchmark_WriteOP {
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //初始化做一些对象的配置工作
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
-            jcstatic= new JedisCluster(jedisClusterNodes);
+            // Jedis连接池配置
+            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+            jedisPoolConfig.setMaxIdle(100);
+            jedisPoolConfig.setMaxTotal(500);
+            jedisPoolConfig.setMinIdle(0);
+            jedisPoolConfig.setMaxWaitMillis(2000); // 设置2秒
+            jedisPoolConfig.setTestOnBorrow(true);
+            jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
