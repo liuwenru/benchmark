@@ -39,11 +39,8 @@ public class Redis_Cluster_Benchmark_ReadOP {
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
             // Jedis连接池配置
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxIdle(10000);
-            jedisPoolConfig.setMaxTotal(500);
-            jedisPoolConfig.setMinIdle(0);
-            jedisPoolConfig.setMaxWaitMillis(2000);
-            jedisPoolConfig.setTestOnBorrow(true);
+            jedisPoolConfig.setMaxTotal(100);
+            jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //构造压力测试数据

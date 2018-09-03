@@ -129,50 +129,50 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_HSET(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.hset("epoint_HASH"+(rndnumber++).toString(),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET10(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap10);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap10);
         jedisop.close();
 
     }
     @Benchmark
     public void test_HMSET20(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap20);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap20);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET40(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap40);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap40);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET80(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap80);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap80);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET100(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap100);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap100);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET200(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap200);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap200);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET400(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH",hashMap400);
+        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap400);
         jedisop.close();
     }
 

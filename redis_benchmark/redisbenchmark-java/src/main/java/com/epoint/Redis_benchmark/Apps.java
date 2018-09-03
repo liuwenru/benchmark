@@ -7,14 +7,14 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 public class Apps {
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(Redis_Cluster_Benchmark_WriteOP.class.getSimpleName())
-                .forks(1)
-                .warmupIterations(1)
-                .measurementIterations(1)
-                .threads(1)
-                .build();
-        new Runner(opt).run();
-    }
+//    public static void main(String[] args) throws RunnerException {
+//        Options opt = new OptionsBuilder()
+//                .include(Redis_Cluster_Benchmark_WriteOP.class.getSimpleName())
+//                .forks(1)
+//                .warmupIterations(1)
+//                .measurementIterations(1)
+//                .threads(1)
+//                .build();
+//        new Runner(opt).run();
+//    }
 }

@@ -79,11 +79,8 @@ public class Redis_Cluster_Benchmark_WriteOP {
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
             // Jedis连接池配置
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxIdle(10000);
-            jedisPoolConfig.setMaxTotal(500);
-            jedisPoolConfig.setMinIdle(0);
-            jedisPoolConfig.setMaxWaitMillis(2000); // 设置2秒
-            jedisPoolConfig.setTestOnBorrow(true);
+            jedisPoolConfig.setMaxTotal(10);
+            jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
@@ -141,7 +138,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
 //        jedisop.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
 //        jedisop.close();
-        jcstatic.hset("epoint_HASH",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jcstatic.hset("epoint_HASH"+(rndnumber++).toString(),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
     }
     @Benchmark
     public void test_HMSET10() throws IOException {
@@ -149,7 +146,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        jedisop.hmset("epoint_HASH",hashMap10);
 //        jedisop.close();
 
-        jcstatic.hmset("epoint_HASH",hashMap10);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap10);
 
 
     }
@@ -159,14 +156,14 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        jedisop.hmset("epoint_HASH",hashMap20);
 //        jedisop.close();
 
-        jcstatic.hmset("epoint_HASH",hashMap20);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap20);
     }
     @Benchmark
     public void test_HMSET40() throws IOException {
 //        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
 //        jedisop.hmset("epoint_HASH",hashMap40);
 //        jedisop.close();
-        jcstatic.hmset("epoint_HASH",hashMap40);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap40);
     }
     @Benchmark
     public void test_HMSET80() throws IOException {
@@ -174,14 +171,14 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        jedisop.hmset("epoint_HASH",hashMap80);
 //        jedisop.close();
 
-        jcstatic.hmset("epoint_HASH",hashMap80);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap80);
     }
     @Benchmark
     public void test_HMSET100() throws IOException {
 //        JedisCluster jedisop = new JedisCluster(jedisClusterNodes);
 //        jedisop.hmset("epoint_HASH",hashMap100);
 //        jedisop.close();
-        jcstatic.hmset("epoint_HASH",hashMap100);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap100);
     }
     @Benchmark
     public void test_HMSET200() throws IOException {
@@ -189,7 +186,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        jedisop.hmset("epoint_HASH",hashMap200);
 //        jedisop.close();
 
-        jcstatic.hmset("epoint_HASH",hashMap200);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap200);
 
     }
     @Benchmark
@@ -198,7 +195,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
 //        jedisop.hmset("epoint_HASH",hashMap400);
 //        jedisop.close();
 
-        jcstatic.hmset("epoint_HASH",hashMap400);
+        jcstatic.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap400);
 
     }
 
