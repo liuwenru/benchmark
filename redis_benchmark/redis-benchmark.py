@@ -32,7 +32,9 @@ matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 
 
 
+#bench_size_list=[512,1024,10240]
 bench_size_list=[128,512,1024,5120,10240,20480,30720,1024000]
+#bench_clients_list=[64,128]
 bench_clients_list=[1,8,16,32,64,128]
 
 
@@ -42,28 +44,28 @@ def bench_standalone():
         print("测试value_size:{0}bytes".format(i))
         for j in bench_clients_list:
             # benchmark_cmd="./redis-benchmark -h {redis_host} -p {redis_port}  -n 100 -c {benchclients} -d {datasize} --csv > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
-            benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
+            benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 >> resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_read_cmd)
             subprocess.call(benchmark_read_cmd, shell=True)
-            time.sleep(5) 
-            benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
+            time.sleep(2) 
+            benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 >> resout/standalone-{datasize}-{benchclients}".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_write_cmd)
             subprocess.call(benchmark_write_cmd, shell=True)
-            time.sleep(5) 
+            time.sleep(2) 
 
 def bench_cluster():
     print("开始测试集群模式redis............")
     for i in bench_size_list:
         print("测试value_size:{0}bytes".format(i))
         for j in bench_clients_list:
-            benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/cluster-{datasize}-{benchclients}".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
+            benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 >> resout/cluster-{datasize}-{benchclients}".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
             print(benchmark_read_cmd)
             subprocess.call(benchmark_read_cmd, shell=True)
-            time.sleep(5) 
-            benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/cluster-{datasize}-{benchclients}".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
+            time.sleep(2) 
+            benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 >> resout/cluster-{datasize}-{benchclients}".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
             print(benchmark_write_cmd)
             subprocess.call(benchmark_write_cmd, shell=True)
-            time.sleep(5) 
+            time.sleep(2) 
 
 
 
