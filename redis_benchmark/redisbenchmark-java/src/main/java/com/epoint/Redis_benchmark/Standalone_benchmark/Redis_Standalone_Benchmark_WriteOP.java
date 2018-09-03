@@ -69,7 +69,10 @@ public class Redis_Standalone_Benchmark_WriteOP {
             System.out.println("#### 测试Redis单节点的写入操作性能...............................................测试机器地址"+HOST+"-----"+"测试端口"+PORT+"测试数据大小(byte):"+DATASIZE);
             //初始化做一些对象的配置工作
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(100);
+            jedisPoolConfig.setMaxTotal(10000);
+            jedisPoolConfig.setMaxTotal(500);
+            jedisPoolConfig.setMinIdle(0);
+            jedisPoolConfig.setMaxWaitMillis(2000);
             pool=new JedisPool(jedisPoolConfig,HOST,PORT);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             Jedis op=pool.getResource();
