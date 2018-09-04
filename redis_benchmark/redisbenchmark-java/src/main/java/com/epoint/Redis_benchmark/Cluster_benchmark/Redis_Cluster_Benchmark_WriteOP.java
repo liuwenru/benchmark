@@ -79,9 +79,10 @@ public class Redis_Cluster_Benchmark_WriteOP {
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
             // Jedis连接池配置
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(10);
+            jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
+            jcstatic.flushAll();
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
