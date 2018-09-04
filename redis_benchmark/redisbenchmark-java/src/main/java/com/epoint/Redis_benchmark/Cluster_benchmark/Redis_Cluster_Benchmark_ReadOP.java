@@ -42,7 +42,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
-            jcstatic.flushAll();
+            //jcstatic.flushAll();
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //构造压力测试数据
             for (int i=0;i<=100000;i++){
