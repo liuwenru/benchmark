@@ -89,8 +89,12 @@ def draw__picture():
         plot.ylabel('QPM')
         plot.xlabel('线程数')
         plot.xticks(bench_clients_list,bench_clients_list)
-        plot.yticks([1,4,5,87,4,6],[1,4,5,87,4,6])
-        plot.plot(bench_clients_list, [1,4,5,87,4,6])
+        for valuesize in bench_size_list:
+            plot.yticks([1,4,5,87,4,valuesize],[1,4,5,87,4,valuesize])
+            clusterline,=plot.plot(bench_clients_list, [1,4,5,7,4,valuesize],label='cluster'+str(valuesize)) # 集群模式下的数据
+            singleline,=plot.plot(bench_clients_list, [4,7,8,3,2,1],color='red',label='standalone'+str(valuesize)) # 单节点模式下数据
+            #plot.legend(handles=[clusterline,singleline],loc='best')
+            plot.legend()
         plot.show()
     
 

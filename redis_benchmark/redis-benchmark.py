@@ -22,7 +22,6 @@ rediscluster_port=7001
 #bench_clients_list=[1,8,16,32,64,128]
 
 
-
 bench_size_list=[1024,5120,10240,128,512,20480]
 bench_clients_list=[1,8,16,32,64,128]
 
@@ -78,21 +77,6 @@ def clean_RedisSingle():
     subprocess.call("redis-cli -p 6379 -h "+ i +"FLUSHALL",shell=True)
 
 
-
-#def draw_standalone_picture():
-#    print("对测试结果进行绘图........")
-#    print("从dbsize的角度进行对比，比较相同的client连接数下不同操作额QPM")
-#    x_area=bench_size_list
-#    x_ticks=(bench_size_list,['128b','512b','1k','5k','10k','20k','30k'])
-#    plot.ylabel('QPM')
-#    plot.xlabel('dbsize大小')
-#    #plot.xticks(x_ticks)
-#    for i in range(len(bench_clients_list)):
-#        print("{0}-------{1}".format(i,bench_clients_list[i]))
-#        plot.subplot(2, 3,i+1)
-#        plot.plot(x_area, [1,5,6,34,45,45,78])
-#    plot.show()
-#    
 
 if __name__ == "__main__":
     #draw_standalone_picture()
