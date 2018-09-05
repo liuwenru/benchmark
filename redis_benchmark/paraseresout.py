@@ -95,7 +95,8 @@ def draw__picture():
             singleline,=plot.plot(bench_clients_list, [4,7,8,3,2,1],color='red',label='standalone'+str(valuesize)) # 单节点模式下数据
             #plot.legend(handles=[clusterline,singleline],loc='best')
             plot.legend()
-        plot.show()
+        #plot.show()
+        plot.savefig("./resout/"+i+".svg")
     
 
 
