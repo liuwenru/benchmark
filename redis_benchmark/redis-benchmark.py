@@ -2,8 +2,6 @@
 import os
 import shutil
 import subprocess
-#import matplotlib.pyplot as plot
-#import matplotlib
 import time
 '''
 基本测试步骤先使用redis-benchmark工具发送测试命令，然后再读取测试结果进行绘图
@@ -18,17 +16,6 @@ redis_port=6379
 
 rediscluster_host="192.168.1.102"
 rediscluster_port=7001
-
-
-
-
-
-
-
-# 解决画图中文标题的问题
-shutil.copyfile('msyh.ttf',os.path.dirname(matplotlib.matplotlib_fname())+"/fonts/ttf/msyh.ttf")
-matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
-
 
 
 #bench_size_list=[128,512,1024,5120,10240,20480,30720,1024000]
