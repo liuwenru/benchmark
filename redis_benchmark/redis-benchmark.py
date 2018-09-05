@@ -13,13 +13,12 @@ import time
 
 '''
 
-
-redis_host="192.168.188.76"
+redis_host="192.168.1.102"
 redis_port=6379
 
+rediscluster_host="192.168.1.102"
+rediscluster_port=7001
 
-rediscluster_host="192.168.188.77"
-rediscluster_port=6379
 
 
 
