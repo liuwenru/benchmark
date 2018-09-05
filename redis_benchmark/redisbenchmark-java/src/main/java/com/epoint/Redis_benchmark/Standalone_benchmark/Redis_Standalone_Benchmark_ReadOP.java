@@ -41,7 +41,7 @@ public class Redis_Standalone_Benchmark_ReadOP {
             pool=new JedisPool(jedisPoolConfig,HOST,PORT);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             Jedis op=pool.getResource();
-            op.flushAll();//每次测试前先清空数据库
+            //op.flushAll();//每次测试前先清空数据库
             //构造压力测试数据
             for (int i=0;i<=100000;i++){
                 op.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);

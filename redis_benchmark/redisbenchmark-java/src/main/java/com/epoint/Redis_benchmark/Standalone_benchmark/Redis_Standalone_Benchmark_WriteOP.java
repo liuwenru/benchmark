@@ -38,6 +38,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.UUID;
 
 // 对单节点的Redis进行写入测试
@@ -51,7 +52,7 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public static int PORT=6379;
     @Param("1024")
     public static int DATASIZE=1024;
-
+    public static Random random=new Random(100000);
     public static JedisPool pool=null;
     public static DataSizeUtil dataSizeUtil=null;
     public static Long rndnumber=0L;
@@ -116,7 +117,7 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_SET() {
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.set("epoint"+(rndnumber++),DataSizeUtil.BENCHSIZE);
+        jedisop.set("epoint"+random.nextInt(DataSizeUtil.RANDNUM),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
 
@@ -129,50 +130,50 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_HSET(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.hset("epoint_HASH"+(rndnumber++).toString(),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.hset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET10(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap10);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap10);
         jedisop.close();
 
     }
     @Benchmark
     public void test_HMSET20(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap20);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap20);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET40(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap40);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap40);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET80(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap80);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap80);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET100(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap100);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap100);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET200(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap200);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap200);
         jedisop.close();
     }
     @Benchmark
     public void test_HMSET400(){
         Jedis jedisop=pool.getResource();
-        jedisop.hmset("epoint_HASH"+(rndnumber++).toString(),hashMap400);
+        jedisop.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap400);
         jedisop.close();
     }
 
@@ -183,7 +184,7 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public  void test_SADD(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.sadd("epoint_SET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.sadd("epoint_SET",String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
 
@@ -195,7 +196,7 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_ZADD(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.sadd("epoint_ZSET",(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.sadd("epoint_ZSET",String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
 
