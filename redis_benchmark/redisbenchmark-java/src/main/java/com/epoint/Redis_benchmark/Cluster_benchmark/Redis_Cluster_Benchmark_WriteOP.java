@@ -54,7 +54,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
     public static Set<HostAndPort> jedisClusterNodes=new HashSet<HostAndPort>();;
     public static JedisCluster  jcstatic=null;
 
-    public static Random random=new Random(100000);
+    public static Random random=new Random(10000);
 
     public static DataSizeUtil dataSizeUtil=null;
     public static Long rndnumber=0L;

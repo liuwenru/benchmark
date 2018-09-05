@@ -29,7 +29,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
     public static Set<HostAndPort> jedisClusterNodes=new HashSet<HostAndPort>();;
     public static JedisCluster jcstatic=null;
 
-    public static Random random=new Random(100000);
+    public static Random random=new Random(10000);
 
     @Setup(Level.Trial)
     public static void Bench_init(){
@@ -39,7 +39,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
             jedisClusterNodes.add(new HostAndPort(HOST, PORT));
             // Jedis连接池配置
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(500);
+            jedisPoolConfig.setMaxTotal(200);
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
             //jcstatic.flushAll();

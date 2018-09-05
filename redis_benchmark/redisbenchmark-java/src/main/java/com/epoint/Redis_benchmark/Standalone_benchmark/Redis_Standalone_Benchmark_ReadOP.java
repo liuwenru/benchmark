@@ -26,7 +26,7 @@ public class Redis_Standalone_Benchmark_ReadOP {
 
     public static DataSizeUtil dataSizeUtil=null;
     public static JedisPool pool=null;
-    public static Random random=new Random(100000);
+    public static Random random=new Random(10000);
 
     @Setup(Level.Trial)
     public static void Bench_init(){
