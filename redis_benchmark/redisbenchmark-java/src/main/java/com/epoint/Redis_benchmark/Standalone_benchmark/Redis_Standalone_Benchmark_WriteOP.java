@@ -70,14 +70,11 @@ public class Redis_Standalone_Benchmark_WriteOP {
             System.out.println("#### 测试Redis单节点的写入操作性能...............................................测试机器地址"+HOST+"-----"+"测试端口"+PORT+"测试数据大小(byte):"+DATASIZE);
             //初始化做一些对象的配置工作
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-            jedisPoolConfig.setMaxTotal(10000);
+            jedisPoolConfig.setMaxTotal(1000);
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setMinIdle(0);
-            pool=new JedisPool(jedisPoolConfig,HOST,PORT);
+            pool=new JedisPool(jedisPoolConfig,HOST,PORT,120000);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
-            Jedis op=pool.getResource();
-            op.flushAll();//每次测试前先清空数据库
-            op.close();
             HashMap<String,String> tmpmap=new HashMap<String, String>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
@@ -129,7 +126,7 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public void test_HSET(){
         //对Redis的进行测试
         Jedis jedisop=pool.getResource();
-        jedisop.hset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        jedisop.hset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
         jedisop.close();
     }
     @Benchmark

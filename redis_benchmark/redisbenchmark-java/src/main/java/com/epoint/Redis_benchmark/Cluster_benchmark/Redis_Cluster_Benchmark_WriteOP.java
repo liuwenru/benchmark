@@ -77,7 +77,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
-            jcstatic= new JedisCluster(jedisClusterNodes,jedisPoolConfig);
+            jcstatic= new JedisCluster(jedisClusterNodes,120000,jedisPoolConfig);
             //jcstatic.flushAll();
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
