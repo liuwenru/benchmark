@@ -20,7 +20,7 @@ matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 # 存放测试结果的map结构 key的形式为  single_SET    cluster_SET
 datamap={}
 
-bench_size_list=[128,512,1024,5120,10240,20480]
+bench_size_list=[128,512,1024,5120,10240]
 bench_clients_list=[1,8,16,32,64,128]
 
 readopgroup=["GET","HGET","ZRANGEBYSCORE10","ZRANGEBYSCORE20","ZRANGEBYSCORE40","ZRANGEBYSCORE80","ZRANGEBYSCORE100","ZRANGEBYSCORE200","ZRANGEBYSCORE400"]
