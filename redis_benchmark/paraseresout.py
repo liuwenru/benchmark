@@ -59,7 +59,7 @@ def parase_resoutfile(resoutmode):
                             cloumindex=bench_size_list.index(benchsize)
                             #print("martchs ops:"+str(matchs.group(1))+" values :"+str(matchs.group(3)))
                             print("mapkey:{mapkey}  rowindex:{rowindex}  cloum:{cloumindex} opvalue:{opvalue}".format(mapkey=mapkeyname,rowindex=rowindex,cloumindex=cloumindex,opvalue=opvalue))
-                            datamap[mapkeyname][rowindex][cloumindex]=opvalue
+                            datamap[mapkeyname][rowindex][cloumindex]=float(opvalue)
             except FileNotFoundError:
                 print("未获取到数据文件")
             # 处理 Write 测试数据样本
@@ -76,6 +76,7 @@ def parase_resoutfile(resoutmode):
                             cloumindex=bench_size_list.index(benchsize)
                             #print("martchs ops:"+str(matchs.group(1))+" values :"+str(matchs.group(3)))
                             print("mapkey:{mapkey}  rowindex:{rowindex}  cloum:{cloumindex} opvalue:{opvalue}".format(mapkey=mapkeyname,rowindex=rowindex,cloumindex=cloumindex,opvalue=opvalue))
+                            datamap[mapkeyname][rowindex][cloumindex]=float(opvalue)
             except FileNotFoundError:
                 print("未获取到数据文件")
 
@@ -93,11 +94,11 @@ def draw__picture():
         plot.xticks(bench_clients_list,bench_clients_list)
         for valuesize in bench_size_list:
             #plot.yticks([1,4,5,87,4,valuesize],[1,4,5,87,4,valuesize])
-            print(str(datamap['cluster_'+str(i)]))
-            print(str(datamap['standalone_'+str(i)]))
+            #print(str(datamap['cluster_'+str(i)]))
+            #print(str(datamap['standalone_'+str(i)]))
             cluster_y=[ tmpclustercloum[bench_size_list.index(valuesize)] for tmpclustercloum in datamap['cluster_'+str(i)]]
             standalone_y=[ tmpstandalonecloum[bench_size_list.index(valuesize)] for tmpstandalonecloum in datamap['standalone_'+str(i)]]
-            print("绘图数据 {titlename}  x轴为{bench_clients_list} y轴为cluster:{cluster_y} standalone:{standalone_y}".format(titlename=i,bench_clients_list=bench_clients_list,cluster_y=cluster_y,standalone_y=standalone_y))
+            print("绘图数据 {titlename} 数据线名称为${linename}  x轴为{bench_clients_list} y轴为cluster:{cluster_y} standalone:{standalone_y}".format(titlename=i,bench_clients_list=bench_clients_list,cluster_y=cluster_y,standalone_y=standalone_y,linename=str(valuesize)))
             clusterline,=plot.plot(bench_clients_list,cluster_y,label='cluster'+str(valuesize)) # 集群模式下的数据
             singleline,=plot.plot(bench_clients_list, standalone_y,label='standalone'+str(valuesize)) # 单节点模式下数据
             #plot.legend(handles=[clusterline,singleline],loc='best')
