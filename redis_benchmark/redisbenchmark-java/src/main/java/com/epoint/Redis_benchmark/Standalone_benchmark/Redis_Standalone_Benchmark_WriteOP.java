@@ -73,7 +73,6 @@ public class Redis_Standalone_Benchmark_WriteOP {
             jedisPoolConfig.setMaxTotal(10000);
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setMinIdle(0);
-            jedisPoolConfig.setMaxWaitMillis(2000);
             pool=new JedisPool(jedisPoolConfig,HOST,PORT);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             Jedis op=pool.getResource();
