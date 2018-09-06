@@ -104,7 +104,7 @@ def draw__picture():
             #plot.legend(handles=[clusterline,singleline],loc='best')
             plot.legend()
         plot.show()
-        plot.savefig("./resout/"+i+".svg")
+        plot.savefig("./resoutpicture/"+i+".svg")
     
 
 
