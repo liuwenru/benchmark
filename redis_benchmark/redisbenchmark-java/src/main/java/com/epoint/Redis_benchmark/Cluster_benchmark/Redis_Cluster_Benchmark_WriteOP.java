@@ -36,7 +36,10 @@ import org.openjdk.jmh.annotations.*;
 import redis.clients.jedis.*;
 
 import javax.xml.crypto.Data;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 // Cluster集群的Redis进行写入测试
@@ -66,6 +69,9 @@ public class Redis_Cluster_Benchmark_WriteOP {
     public static HashMap<String,String> hashMap200=new HashMap<String, String>();
     public static HashMap<String,String> hashMap400=new HashMap<String, String>();
 
+    // 清楚上一把压测数据的脚本地址
+    @Param("/root/cleancluster.sh")
+    public static  String cleanbenchdatashell="/root/cleancluster.sh";
     @Setup
     public static void Bench_init(){
         try {
@@ -78,7 +84,10 @@ public class Redis_Cluster_Benchmark_WriteOP {
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,1200000,jedisPoolConfig);
-            //jcstatic.flushAll();
+            // 在调用每一个方法前都清理一下数据库，避免内存问题导致CPU挂掉了
+            System.out.println("#### 正在清理上一把测试的数据内容.........");
+            DataSizeUtil.cleanbenchdata(cleanbenchdatashell);
+            Thread.sleep(10000);
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);

@@ -63,7 +63,9 @@ public class Redis_Standalone_Benchmark_WriteOP {
     public static HashMap<String,String> hashMap100=new HashMap<String, String>();
     public static HashMap<String,String> hashMap200=new HashMap<String, String>();
     public static HashMap<String,String> hashMap400=new HashMap<String, String>();
-
+    // 清楚上一把压测数据的脚本地址
+    @Param("/root/cleansingle.sh")
+    public static  String cleanbenchdatashell="/root/cleansingle.sh";
     @Setup
     public static void Bench_init(){
         try {
@@ -75,6 +77,9 @@ public class Redis_Standalone_Benchmark_WriteOP {
             jedisPoolConfig.setMinIdle(0);
             pool=new JedisPool(jedisPoolConfig,HOST,PORT,120000);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
+            // 在调用每一个方法前都清理一下数据库，避免内存问题导致CPU挂掉了
+            System.out.println("#### 正在清理上一把测试的数据内容.........");
+            DataSizeUtil.cleanbenchdata(cleanbenchdatashell);
             HashMap<String,String> tmpmap=new HashMap<String, String>();
             for(int i =1;i<=400;i++){
                 tmpmap.put((rndnumber++).toString(),DataSizeUtil.BENCHSIZE);

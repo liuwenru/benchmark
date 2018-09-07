@@ -27,7 +27,9 @@ public class Redis_Standalone_Benchmark_ReadOP {
     public static DataSizeUtil dataSizeUtil=null;
     public static JedisPool pool=null;
     public static Random random=new Random(10000);
-
+    // 清楚上一把压测数据的脚本地址
+    @Param("/root/cleansingle.sh")
+    public static  String cleanbenchdatashell="/root/cleansingle.sh";
     @Setup(Level.Trial)
     public static void Bench_init(){
         try {
@@ -40,7 +42,9 @@ public class Redis_Standalone_Benchmark_ReadOP {
             pool=new JedisPool(jedisPoolConfig,HOST,PORT,120000);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             Jedis op=pool.getResource();
-            //op.flushAll();//每次测试前先清空数据库
+            // 在调用每一个方法前都清理一下数据库，避免内存问题导致CPU挂掉了
+            System.out.println("#### 正在清理上一把测试的数据内容.........");
+            DataSizeUtil.cleanbenchdata(cleanbenchdatashell);
             //构造压力测试数据
             for (int i=0;i<=100000;i++){
                 op.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);

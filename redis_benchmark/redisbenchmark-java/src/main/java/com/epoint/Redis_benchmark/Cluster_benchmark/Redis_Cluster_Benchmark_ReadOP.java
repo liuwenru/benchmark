@@ -30,7 +30,9 @@ public class Redis_Cluster_Benchmark_ReadOP {
     public static JedisCluster jcstatic=null;
 
     public static Random random=new Random(10000);
-
+    // 清楚上一把压测数据的脚本地址
+    @Param("/root/cleancluster.sh")
+    public static  String cleanbenchdatashell="/root/cleancluster.sh";
     @Setup(Level.Trial)
     public static void Bench_init(){
         try {
@@ -43,6 +45,10 @@ public class Redis_Cluster_Benchmark_ReadOP {
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,120000,jedisPoolConfig);
             dataSizeUtil=new DataSizeUtil(DATASIZE);
+            // 在调用每一个方法前都清理一下数据库，避免内存问题导致CPU挂掉了
+            System.out.println("#### 正在清理上一把测试的数据内容.........");
+            DataSizeUtil.cleanbenchdata(cleanbenchdatashell);
+            Thread.sleep(10000);
             //构造压力测试数据
             for (int i=0;i<=1000;i++){
                 jcstatic.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);
