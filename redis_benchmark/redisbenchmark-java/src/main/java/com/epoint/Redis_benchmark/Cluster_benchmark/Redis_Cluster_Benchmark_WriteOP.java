@@ -77,7 +77,7 @@ public class Redis_Cluster_Benchmark_WriteOP {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
-            jcstatic= new JedisCluster(jedisClusterNodes,120000,jedisPoolConfig);
+            jcstatic= new JedisCluster(jedisClusterNodes,1200000,jedisPoolConfig);
             //jcstatic.flushAll();
             HashMap<String,String> tmpmap=new HashMap<>();
             for(int i =1;i<=400;i++){
@@ -116,7 +116,12 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_SET() throws IOException {
         //对Redis的进行测试
-        jcstatic.set("epoint"+random.nextInt(DataSizeUtil.RANDNUM),DataSizeUtil.BENCHSIZE);
+        try{
+            jcstatic.set("epoint"+random.nextInt(DataSizeUtil.RANDNUM),DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
+
     }
     /**
      *  Hash 类操作
@@ -125,36 +130,67 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_HSET() throws IOException {
         //对Redis的进行测试
-        jcstatic.hset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        try{
+            jcstatic.hset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),(rndnumber++).toString(),DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET10() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap10);
+        try{
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap10);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET20() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap20);
+        try{
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap20);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET40() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap40);
+        try{
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap40);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET80() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap80);
+        try{
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap80);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET100() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap100);
+        try{
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap100);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET200() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap200);
-
+        try {
+            jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap200);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_HMSET400() throws IOException {
-        jcstatic.hmset("epoint_HASH"+random.nextInt(DataSizeUtil.RANDNUM),hashMap400);
+        try {
+            jcstatic.hmset("epoint_HASH" + random.nextInt(DataSizeUtil.RANDNUM), hashMap400);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
 
     /**
@@ -163,7 +199,11 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public  void test_SADD() throws IOException {
         //对Redis的进行测试
+        try {
         jcstatic.sadd("epoint_SET",String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
 
     /**
@@ -173,7 +213,11 @@ public class Redis_Cluster_Benchmark_WriteOP {
     @Benchmark
     public void test_ZADD() throws IOException {
         //对Redis的进行测试
-        jcstatic.sadd("epoint_ZSET",String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
+        try{
+            jcstatic.sadd("epoint_ZSET",String.valueOf(random.nextInt(DataSizeUtil.RANDNUM)),DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
 
     /**
@@ -181,10 +225,18 @@ public class Redis_Cluster_Benchmark_WriteOP {
      */
     @Benchmark
     public void  test_LPUSH() throws IOException {
-        jcstatic.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
+        try{
+            jcstatic.lpush("LPUSH",DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
     @Benchmark
     public void test_RPUSH() throws IOException {
-        jcstatic.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
+        try{
+            jcstatic.lpush("RPUSH",DataSizeUtil.BENCHSIZE);
+        }catch (Exception e){
+            System.out.println("error  happened");
+        }
     }
 }

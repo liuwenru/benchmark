@@ -42,10 +42,9 @@ public class Redis_Cluster_Benchmark_ReadOP {
             jedisPoolConfig.setMaxTotal(500);
             jedisPoolConfig.setTestOnBorrow(false);
             jcstatic= new JedisCluster(jedisClusterNodes,120000,jedisPoolConfig);
-            //jcstatic.flushAll();
             dataSizeUtil=new DataSizeUtil(DATASIZE);
             //构造压力测试数据
-            for (int i=0;i<=10000;i++){
+            for (int i=0;i<=1000;i++){
                 jcstatic.set("epoint"+Integer.toString(i),DataSizeUtil.BENCHSIZE);
                 jcstatic.hset("epoint_HASH",Integer.toString(i),DataSizeUtil.BENCHSIZE);
                 jcstatic.sadd("epoint_SET",DataSizeUtil.BENCHSIZE+Integer.toString(i));
@@ -73,7 +72,7 @@ public class Redis_Cluster_Benchmark_ReadOP {
     @Benchmark
     public void test_HGET(){
         //对Redis的进行测试
-        jcstatic.hget("epoint_HASH",Integer.toString(random.nextInt(10000)));
+        jcstatic.hget("epoint_HASH",Integer.toString(random.nextInt(1000)));
     }
     /**
      *  SET 集合类操作

@@ -80,11 +80,9 @@ def parase_resoutfile(resoutmode):
             except FileNotFoundError:
                 print("未获取到数据文件")
 
-
-
 # 根绝解析出来的map数据结构画图
 def draw__picture():
-    print("对测试结果进行绘图........")
+    print("对测试结果绘制折线图........")
     rowplotgroup=readopgroup+writeopgroup
     for i in rowplotgroup:
         #plot.subplot(len(rowplotgroup),1,rowplotgroup.index(i)+1)
@@ -106,6 +104,26 @@ def draw__picture():
         plot.show()
         plot.savefig("./resoutpicture/"+i+".svg")
     
+# 根据解析出来的map数据结构绘制柱状图
+def draw_bar_picture():
+    print("对测试结果绘制柱状图........")
+    rowplotgroup=readopgroup+writeopgroup
+    for i in rowplotgroup:
+        plot.title(i)
+        plot.ylabel("QPM")
+        plot.xlabel("线程数")
+        plot.xticks(range(len(bench_clients_list)),bench_clients_list)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,8 +137,6 @@ def displaymap(showmap):
             for j in range(len(bench_size_list)):
                 datastrline=datastrline+" "+str(showmap[k][i][j])
             print(disstrline+datastrline)
-
-
 
 if __name__ == "__main__":
     print("开始解析测试数据......")

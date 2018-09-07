@@ -37,12 +37,12 @@ def bench_standalone():
             benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/standalone-{datasize}-{benchclients}_ReadOP".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_read_cmd)
             subprocess.call(benchmark_read_cmd, shell=True)
-            time.sleep(2)
+            time.sleep(5)
             clean_RedisSingle()
             benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Standalone_benchmark.Redis_Standalone_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/standalone-{datasize}-{benchclients}_WriteOP".format(redis_host=redis_host,redis_port=redis_port,datasize=i,benchclients=j)
             print(benchmark_write_cmd)
             subprocess.call(benchmark_write_cmd, shell=True)
-            time.sleep(2) 
+            time.sleep(5) 
             clean_RedisSingle()
 
 def bench_cluster():
@@ -53,12 +53,12 @@ def bench_cluster():
             benchmark_read_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/cluster-{datasize}-{benchclients}_ReadOP".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
             print(benchmark_read_cmd)
             subprocess.call(benchmark_read_cmd, shell=True)
-            time.sleep(2) 
+            time.sleep(5) 
             clean_RedisCluster()
             benchmark_write_cmd="java -jar benchmarks.jar com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.* -p PORT={redis_port} -p HOST={redis_host} -p DATASIZE={datasize}  -t {benchclients}  -f 1  -i 1 > resout/cluster-{datasize}-{benchclients}_WriteOP".format(redis_host=rediscluster_host,redis_port=rediscluster_port,datasize=i,benchclients=j)
             print(benchmark_write_cmd)
             subprocess.call(benchmark_write_cmd, shell=True)
-            time.sleep(2)
+            time.sleep(5)
             clean_RedisCluster()
 
 def clean_RedisCluster():

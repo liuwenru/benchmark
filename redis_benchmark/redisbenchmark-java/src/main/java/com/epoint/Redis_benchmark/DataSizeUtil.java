@@ -7,7 +7,7 @@ import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Benchmark)
 public class DataSizeUtil {
-    public static int RANDNUM=10000;
+    public static int RANDNUM=1000;
     //生产对应大小的数据
     public static String BENCHSIZE="";
 
