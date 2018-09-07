@@ -11,10 +11,10 @@ import time
 
 '''
 
-redis_host="192.168.1.102"
+redis_host="172.31.68.83"
 redis_port=6379
 
-rediscluster_host="192.168.1.102"
+rediscluster_host="172.31.68.83"
 rediscluster_port=7001
 
 
@@ -63,7 +63,7 @@ def bench_cluster():
 
 def clean_RedisCluster():
     print("清理集群测试数据中...........")
-    for i in ["192.168.1.102","192.168.1.103","192.168.1.104"]:
+    for i in ["172.31.68.83","172.31.68.84","172.31.68.85"]:
         print("clean host {host}:7001&7002".format(host=i))
         print("redis-cli -p 7001 -h "+ i +" -c FLUSHALL")
         subprocess.call("redis-cli -p 7001 -h "+ i +" -c FLUSHALL",shell=True)
@@ -73,7 +73,7 @@ def clean_RedisCluster():
 
 def clean_RedisSingle():
     print("清理集群测试数据中...........")
-    singlehost ="192.168.1.102"
+    singlehost ="172.31.68.83"
     subprocess.call("redis-cli -p 6379 -h "+ i +"FLUSHALL",shell=True)
 
 
