@@ -20,7 +20,7 @@ matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 # 存放测试结果的map结构 key的形式为  single_SET    cluster_SET
 datamap={}
 
-bench_size_list=[128,512,1024,5120,10240]
+bench_size_list=[128,512,1024,5120,10240,20480]
 bench_clients_list=[1,8,16,32,64,128]
 
 readopgroup=["GET","HGET","ZRANGEBYSCORE10","ZRANGEBYSCORE20","ZRANGEBYSCORE40","ZRANGEBYSCORE80","ZRANGEBYSCORE100","ZRANGEBYSCORE200","ZRANGEBYSCORE400"]
@@ -108,14 +108,67 @@ def draw__picture():
 def draw_bar_picture():
     print("对测试结果绘制柱状图........")
     rowplotgroup=readopgroup+writeopgroup
-    for i in rowplotgroup:
-        plot.title(i)
+    barwith=0.05 # 设置柱状图的宽度
+    barstart=(0.7,1.0,1.7,2.0,2.7,3.0) #初始第一位置的X轴坐标
+    x_map={
+        "128":(0.7,1.0,1.7,2.0,2.7,3.0),
+        "512":(0.75,1.05,1.75,2.05,2.75,3.05),
+        "1024":(0.8,1.1,1.8,2.1,2.8,3.1),
+        "5120":(0.85,1.15,1.85,2.15,2.85,3.15),
+        "10240":(0.9,1.2,1.9,2.2,2.9,3.2),
+        "20480":(0.95,1.25,1.95,2.25,2.95,3.25)
+    }
+    group1=[1,8,16]
+    group2=[32,64,128]
+    for optemp in rowplotgroup:
+        map1=getmatedata(group1,bench_size_list,optemp)
+        print(map1)
+        for i in bench_size_list:
+            plot.bar(x_map[str(i)],map1[i],0.05,label=str(i)+" byte")
+        plot.title(str(optemp)+"----" + str(group1)+"线程")
+        plot.ylabel("QPM(ops/s)")
+        plot.xlabel("线程数")
+        plot.xticks([1,2,3],["(cluster)1(standalone)","(cluster)8(standalone)","(cluster)16(standalone)"])
+        plot.legend()
+        plot.show()
+        #plot.savefig("./resoutpicture/"+str(optemp)+"-"+getfilename(group1)+".png")
+    for optemp in rowplotgroup:
+        map2=getmatedata(group2,bench_size_list,optemp)
+        for i in bench_size_list:
+            plot.bar(x_map[str(i)],map2[i],0.05,label=str(i)+" byte")
+        plot.title(str(optemp)+"----" + str(group2)+"线程")
         plot.ylabel("QPM")
         plot.xlabel("线程数")
-        # 每一种数据的每一个线程数据对应一个柱状图的一条
-        for clientitem in bench_clients_list:
-            for bensizeitem in bench_size_list:
-                plot.bar(*args, **kwargs)
+        plot.xticks([1,2,3],["(cluster)32(standalone)","(cluster)64(standalone)","(cluster)128(standalone)"])
+        plot.legend()
+        plot.show()
+        #plot.savefig("./resoutpicture/"+str(optemp)+"-"+getfilename(group1)+".png")
+
+
+# 获取比较数据
+def getmatedata(clientslist,benchsizelist,optype):
+    resoutmap={}
+    for i in benchsizelist:
+        resoutmap[i]=[]
+        for j in clientslist:
+            temprow=bench_clients_list.index(j)
+            tempcloum=bench_size_list.index(i)
+            resoutmap[i].append(datamap["cluster_"+optype][temprow][tempcloum])
+            resoutmap[i].append(datamap["standalone_"+optype][temprow][tempcloum])
+    return resoutmap
+
+def getfilename(listname):
+    filename=""
+    for i in listname:
+        filename=filename+"-"+str(i)
+    return filename;
+
+
+
+
+
+
+
 
 def displaymap(showmap):
     print("查看测试数据")
@@ -133,4 +186,5 @@ if __name__ == "__main__":
     parase_resoutfile("cluster")
     parase_resoutfile("standalone")
     displaymap(datamap)
-    draw__picture()
+    #draw__picture()
+    draw_bar_picture()
