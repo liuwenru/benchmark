@@ -112,20 +112,10 @@ def draw_bar_picture():
         plot.title(i)
         plot.ylabel("QPM")
         plot.xlabel("线程数")
-        plot.xticks(range(len(bench_clients_list)),bench_clients_list)
-
-
-
-
-
-
-
-
-
-
-
-
-
+        # 每一种数据的每一个线程数据对应一个柱状图的一条
+        for clientitem in bench_clients_list:
+            for bensizeitem in bench_size_list:
+                plot.bar(*args, **kwargs)
 
 def displaymap(showmap):
     print("查看测试数据")

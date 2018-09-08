@@ -74,13 +74,9 @@ def clean_RedisCluster():
 def clean_RedisSingle():
     print("清理集群测试数据中...........")
     singlehost ="172.31.68.83"
-    subprocess.call("redis-cli -p 6379 -h "+ i +"FLUSHALL",shell=True)
-
-
+    subprocess.call("redis-cli -p 6379 -h "+ singlehost +" FLUSHALL",shell=True)
 
 if __name__ == "__main__":
     #draw_standalone_picture()
     bench_standalone()
     bench_cluster()
-
-
