@@ -1,0 +1,334 @@
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET10
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 0.00% complete, ETA 00:02:10
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+1147.283 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET10":
+  1147.283 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET100
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 7.69% complete, ETA 00:04:26
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+107.879 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET100":
+  107.879 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET20
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 15.38% complete, ETA 00:04:54
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+672.950 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET20":
+  672.950 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET200
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 23.08% complete, ETA 00:04:26
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+73.187 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET200":
+  73.187 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET40
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 30.77% complete, ETA 00:04:21
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+466.389 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET40":
+  466.389 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET400
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 38.46% complete, ETA 00:03:44
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+40.605 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET400":
+  40.605 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET80
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 46.15% complete, ETA 00:03:29
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+241.376 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET80":
+  241.376 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HSET
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 53.85% complete, ETA 00:02:55
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+11622.982 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HSET":
+  11622.982 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_LPUSH
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 61.54% complete, ETA 00:02:24
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+7818.116 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_LPUSH":
+  7818.116 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_RPUSH
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 69.23% complete, ETA 00:01:52
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+7513.972 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_RPUSH":
+  7513.972 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SADD
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 76.92% complete, ETA 00:01:22
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+31173.223 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SADD":
+  31173.223 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SET
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 84.62% complete, ETA 00:00:53
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+10601.071 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SET":
+  10601.071 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 128 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_ZADD
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 92.31% complete, ETA 00:00:26
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis集群的写入操作性能...............................................测试机器地址172.31.68.83-----测试数据大小(byte):20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+32139.429 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_ZADD":
+  32139.429 ops/s
+
+
+# Run complete. Total time: 00:05:35
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                                                        (DATASIZE)        (HOST)  (PORT)  (cleanbenchdatashell)   Mode  Cnt      Score   Error  Units
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET10        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        1147.283          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET100       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         107.879          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET20        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         672.950          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET200       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt          73.187          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET40        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         466.389          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET400       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt          40.605          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HMSET80        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         241.376          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_HSET           20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       11622.982          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_LPUSH          20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        7818.116          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_RPUSH          20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        7513.972          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SADD           20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       31173.223          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_SET            20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       10601.071          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_WriteOP.test_ZADD           20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       32139.429          ops/s

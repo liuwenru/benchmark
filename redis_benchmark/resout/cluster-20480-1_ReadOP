@@ -1,0 +1,234 @@
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_GET
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 0.00% complete, ETA 00:01:30
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+5405.601 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_GET":
+  5405.601 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_HGET
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 11.11% complete, ETA 00:02:51
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+7264.580 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_HGET":
+  7264.580 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE10
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 22.22% complete, ETA 00:02:29
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+1449.695 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE10":
+  1449.695 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE100
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 33.33% complete, ETA 00:02:07
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+153.407 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE100":
+  153.407 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE20
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 44.44% complete, ETA 00:01:46
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+719.598 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE20":
+  719.598 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE200
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 55.56% complete, ETA 00:01:25
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+75.089 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE200":
+  75.089 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE40
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 66.67% complete, ETA 00:01:03
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+393.286 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE40":
+  393.286 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE400
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 77.78% complete, ETA 00:00:42
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+21.131 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE400":
+  21.131 ops/s
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_65, Java HotSpot(TM) 64-Bit Server VM, 25.65-b01
+# VM invoker: /opt/jdk1.8.0_65/jre/bin/java
+# VM options: <none>
+# Warmup: <none>
+# Measurement: 1 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE80
+# Parameters: (DATASIZE = 20480, HOST = 172.31.68.83, PORT = 7001, cleanbenchdatashell = /root/cleancluster.sh)
+
+# Run progress: 88.89% complete, ETA 00:00:21
+# Fork: 1 of 1
+Iteration   1: #### 测试Redis单节点的读取操作性能...............................................测试机器地址 172.31.68.83 -----测试端口 7001 测试数据大小(byte): 20480
+#### 正在清理上一把测试的数据内容.........
+INFO:OK
+206.987 ops/s
+
+
+Result "com.epoint.Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE80":
+  206.987 ops/s
+
+
+# Run complete. Total time: 00:03:11
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                                                               (DATASIZE)        (HOST)  (PORT)  (cleanbenchdatashell)   Mode  Cnt     Score   Error  Units
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_GET                    20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       5405.601          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_HGET                   20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       7264.580          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE10        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt       1449.695          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE100       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        153.407          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE20        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        719.598          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE200       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         75.089          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE40        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        393.286          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE400       20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt         21.131          ops/s
+Redis_benchmark.Cluster_benchmark.Redis_Cluster_Benchmark_ReadOP.test_ZRANGEBYSCORE80        20480  172.31.68.83    7001  /root/cleancluster.sh  thrpt        206.987          ops/s

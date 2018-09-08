@@ -107,8 +107,6 @@ venv.bak/
 
 .idea/
 *.iml
-redis_benchmark/resout/*
 redis_benchmark/resoutpicture/*
-
 
 .DS_Store
