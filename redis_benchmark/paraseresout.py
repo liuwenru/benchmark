@@ -109,7 +109,7 @@ def draw_bar_picture():
     print("对测试结果绘制柱状图........")
     rowplotgroup=readopgroup+writeopgroup
     barwith=0.05 # 设置柱状图的宽度
-    barstart=(0.7,1.0,1.7,2.0,2.7,3.0) #初始第一位置的X轴坐标
+    # 坐标轴的位置
     x_map={
         "128":(0.7,1.0,1.7,2.0,2.7,3.0),
         "512":(0.75,1.05,1.75,2.05,2.75,3.05),
@@ -122,25 +122,27 @@ def draw_bar_picture():
     group2=[32,64,128]
     for optemp in rowplotgroup:
         map1=getmatedata(group1,bench_size_list,optemp)
+        plot.subplot(2,1,1)
         print(map1)
         for i in bench_size_list:
-            plot.bar(x_map[str(i)],map1[i],0.05,label=str(i)+" byte")
+            plot.bar(x_map[str(i)],map1[i],barwith,label=str(i)+" byte")
         plot.title(str(optemp)+"----" + str(group1)+"线程")
         plot.ylabel("QPM(ops/s)")
         plot.xlabel("线程数")
         plot.xticks([1,2,3],["(cluster)1(standalone)","(cluster)8(standalone)","(cluster)16(standalone)"])
         plot.legend()
-        plot.show()
+        plot.tight_layout()
+        #plot.show()
+        plot.subplot(2,1,2)
         #plot.savefig("./resoutpicture/"+str(optemp)+"-"+getfilename(group1)+".png")
-    for optemp in rowplotgroup:
         map2=getmatedata(group2,bench_size_list,optemp)
         for i in bench_size_list:
-            plot.bar(x_map[str(i)],map2[i],0.05,label=str(i)+" byte")
+            plot.bar(x_map[str(i)],map2[i],barwith,label=str(i)+" byte")
         plot.title(str(optemp)+"----" + str(group2)+"线程")
         plot.ylabel("QPM")
         plot.xlabel("线程数")
         plot.xticks([1,2,3],["(cluster)32(standalone)","(cluster)64(standalone)","(cluster)128(standalone)"])
-        plot.legend()
+        #plot.legend()
         plot.show()
         #plot.savefig("./resoutpicture/"+str(optemp)+"-"+getfilename(group1)+".png")
 
