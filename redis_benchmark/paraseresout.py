@@ -127,7 +127,7 @@ def draw_bar_picture():
         for i in bench_size_list:
             plot.bar(x_map[str(i)],map1[i],barwith,label=str(i)+" byte")
         plot.title(str(optemp)+"----" + str(group1)+"线程")
-        plot.ylabel("QPM(ops/s)")
+        plot.ylabel("QPS")
         plot.xlabel("线程数")
         plot.xticks([1,2,3],["(cluster)1(standalone)","(cluster)8(standalone)","(cluster)16(standalone)"])
         plot.legend()
@@ -139,7 +139,7 @@ def draw_bar_picture():
         for i in bench_size_list:
             plot.bar(x_map[str(i)],map2[i],barwith,label=str(i)+" byte")
         plot.title(str(optemp)+"----" + str(group2)+"线程")
-        plot.ylabel("QPM")
+        plot.ylabel("QPS")
         plot.xlabel("线程数")
         plot.xticks([1,2,3],["(cluster)32(standalone)","(cluster)64(standalone)","(cluster)128(standalone)"])
         #plot.legend()
